@@ -1,12 +1,24 @@
-// app/ContactForm.tsx
-"use client";
-
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/components/ui/checkbox";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "@/components/ui/button";
+import { Alert, AlertDescription } from "@/components/ui/alert";
 
 const schema = z.object({
+  name: z.string().min(1, "Name is required"),
   street: z.string().min(1, "Street is required"),
   city: z.string().min(1, "City is required"),
   zip: z.string().regex(/^\d+$/, "Zip code must be numeric"),
@@ -31,84 +43,129 @@ export default function ContactForm() {
   const onSubmit = (data: FormData) => {
     console.log(data);
     setIsSubmitted(true);
-    // Here you can handle the form submission, e.g., sending data to an API
   };
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        width: "300px",
-        padding: "10px",
-        border: "1px solid black",
-        marginBottom: "8px",
-      }}
-    >
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div>
-          <label htmlFor="street">Street</label>
-          <input
-            id="street"
-            {...register("street")}
-            placeholder="Street..."
-            maxLength={80}
-          />
-          {errors.street && <span>{errors.street.message}</span>}
-        </div>
-        <div>
-          <label htmlFor="city">City</label>
-          <input
-            id="city"
-            {...register("city")}
-            placeholder="City..."
-            maxLength={80}
-          />
-          {errors.city && <span>{errors.city.message}</span>}
-        </div>
-        <div>
-          <label htmlFor="zip">Zip Code</label>
-          <input
-            id="zip"
-            {...register("zip")}
-            placeholder="Zip Code..."
-            maxLength={80}
-          />
-          {errors.zip && <span>{errors.zip.message}</span>}
-        </div>
-        <div>
-          <label htmlFor="newsletter">Subscribe to newsletter</label>
-          <input id="newsletter" type="checkbox" {...register("newsletter")} />
-        </div>
-        <div>
-          <label htmlFor="contact">Contact</label>
-          <input id="contact" type="checkbox" {...register("contact")} />
-        </div>
-        <div>
-          <label htmlFor="comments">Comments</label>
-          <textarea id="comments" {...register("comments")}></textarea>
-        </div>
-        <div>
-          <label htmlFor="country">Country</label>
-          <select id="country" {...register("country")}>
-            <option value="US">United States</option>
-            <option value="MX">Mexico</option>
-            <option value="CA">Canada</option>
-          </select>
-        </div>
-        <button type="submit">Save Contact Info</button>
-      </form>
-      {isSubmitted && (
-        <>
-          {Object.keys(errors).length === 0 ? (
-            <span className="success">Success</span>
-          ) : (
-            <span className="error">Error</span>
-          )}
-        </>
-      )}
-    </div>
+    <Card className="w-full max-w-md mx-auto">
+      <CardHeader>
+        <CardTitle className="text-2xl font-bold text-center">
+          Contact Form
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="name">Name</Label>
+            <Input
+              id="name"
+              {...register("name")}
+              placeholder="Your name"
+              maxLength={80}
+            />
+            {errors.name && (
+              <p className="text-sm text-red-500">{errors.name.message}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="street">Street</Label>
+            <Input
+              id="street"
+              {...register("street")}
+              placeholder="Street address"
+              maxLength={80}
+            />
+            {errors.street && (
+              <p className="text-sm text-red-500">{errors.street.message}</p>
+            )}
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div className="space-y-2">
+              <Label htmlFor="city">City</Label>
+              <Input
+                id="city"
+                {...register("city")}
+                placeholder="City"
+                maxLength={80}
+              />
+              {errors.city && (
+                <p className="text-sm text-red-500">{errors.city.message}</p>
+              )}
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="zip">Zip Code</Label>
+              <Input
+                id="zip"
+                {...register("zip")}
+                placeholder="Zip Code"
+                maxLength={10}
+              />
+              {errors.zip && (
+                <p className="text-sm text-red-500">{errors.zip.message}</p>
+              )}
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Checkbox id="newsletter" {...register("newsletter")} />
+            <Label htmlFor="newsletter">Subscribe to newsletter</Label>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <Checkbox id="contact" {...register("contact")} />
+            <Label htmlFor="contact">Contact me</Label>
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="comments">Comments</Label>
+            <Textarea
+              id="comments"
+              {...register("comments")}
+              placeholder="Your comments..."
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="country">Country</Label>
+            <Select {...register("country")}>
+              <SelectTrigger>
+                <SelectValue placeholder="Select a country" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="US">United States</SelectItem>
+                <SelectItem value="MX">Mexico</SelectItem>
+                <SelectItem value="CA">Canada</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
+          <Button type="submit" className="w-full">
+            Save Contact Info
+          </Button>
+        </form>
+
+        {isSubmitted && (
+          <Alert
+            className={`mt-4 ${
+              Object.keys(errors).length === 0 ? "bg-green-100" : "bg-red-100"
+            }`}
+          >
+            <AlertDescription>
+              {Object.keys(errors).length === 0 ? (
+                <span className="text-green-700">
+                  Success! Your information has been saved.
+                </span>
+              ) : (
+                <span className="text-red-700">
+                  Error: Please check the form for errors and try again.
+                </span>
+              )}
+            </AlertDescription>
+          </Alert>
+        )}
+      </CardContent>
+    </Card>
   );
 }
