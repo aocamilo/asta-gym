@@ -23,9 +23,9 @@ const schema = z.object({
   street: z.string().min(1, "Street is required"),
   city: z.string().min(1, "City is required"),
   zip: z.string().regex(/^\d+$/, "Zip code must be numeric"),
-  newsletter: z.boolean(),
-  contact: z.boolean(),
-  comments: z.string(),
+  newsletter: z.boolean().optional(),
+  contact: z.boolean().optional(),
+  comments: z.string().optional(),
   country: z.enum(["US", "MX", "CA"]),
 });
 
@@ -112,11 +112,19 @@ export default function ContactForm() {
           <div className="flex items-center space-x-2">
             <Checkbox id="newsletter" {...register("newsletter")} />
             <Label htmlFor="newsletter">Subscribe to newsletter</Label>
+            {errors.newsletter && (
+              <p className="text-sm text-red-500">
+                {errors.newsletter.message}
+              </p>
+            )}
           </div>
 
           <div className="flex items-center space-x-2">
             <Checkbox id="contact" {...register("contact")} />
             <Label htmlFor="contact">Contact me</Label>
+            {errors.contact && (
+              <p className="text-sm text-red-500">{errors.contact.message}</p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -126,6 +134,9 @@ export default function ContactForm() {
               {...register("comments")}
               placeholder="Your comments..."
             />
+            {errors.comments && (
+              <p className="text-sm text-red-500">{errors.comments.message}</p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -139,6 +150,9 @@ export default function ContactForm() {
                 <SelectItem value="MX">Mexico</SelectItem>
                 <SelectItem value="CA">Canada</SelectItem>
               </SelectContent>
+              {errors.country && (
+                <p className="text-sm text-red-500">{errors.country.message}</p>
+              )}
             </Select>
           </div>
 
