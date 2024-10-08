@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,6 +17,7 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 const schema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -24,7 +25,7 @@ const schema = z.object({
   city: z.string().min(1, "City is required"),
   zip: z.string().regex(/^\d+$/, "Zip code must be numeric"),
   newsletter: z.boolean().optional(),
-  contact: z.boolean().optional(),
+  contact: z.enum(["email", "phone", "none"]),
   comments: z.string().optional(),
   country: z.enum(["US", "MX", "CA"]),
 });
@@ -37,12 +38,15 @@ export default function ContactForm() {
     register,
     handleSubmit,
     formState: { errors },
-    getValues,
+    control,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
+    defaultValues: {
+      newsletter: false,
+      contact: "none",
+      country: "US",
+    },
   });
-
-  console.log({ values: getValues() });
 
   const onSubmit = (data: FormData) => {
     console.log(data);
@@ -113,7 +117,17 @@ export default function ContactForm() {
           </div>
 
           <div className="flex items-center space-x-2">
-            <Checkbox id="newsletter" {...register("newsletter")} />
+            <Controller
+              name="newsletter"
+              control={control}
+              render={({ field }) => (
+                <Checkbox
+                  id="newsletter"
+                  checked={field.value}
+                  onCheckedChange={field.onChange}
+                />
+              )}
+            />
             <Label htmlFor="newsletter">Subscribe to newsletter</Label>
             {errors.newsletter && (
               <p className="text-sm text-red-500">
@@ -123,8 +137,33 @@ export default function ContactForm() {
           </div>
 
           <div className="flex items-center space-x-2">
-            <Checkbox id="contact" {...register("contact")} />
-            <Label htmlFor="contact">Contact me</Label>
+            <div className="space-y-2">
+              <Label>Preferred contact method</Label>
+              <Controller
+                name="contact"
+                control={control}
+                render={({ field }) => (
+                  <RadioGroup
+                    onValueChange={field.onChange}
+                    value={field.value}
+                    className="flex flex-col space-y-1"
+                  >
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="email" id="contact-email" />
+                      <Label htmlFor="contact-email">Email</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="phone" id="contact-phone" />
+                      <Label htmlFor="contact-phone">Phone</Label>
+                    </div>
+                    <div className="flex items-center space-x-2">
+                      <RadioGroupItem value="none" id="contact-none" />
+                      <Label htmlFor="contact-none">No contact</Label>
+                    </div>
+                  </RadioGroup>
+                )}
+              />
+            </div>
             {errors.contact && (
               <p className="text-sm text-red-500">{errors.contact.message}</p>
             )}
@@ -144,19 +183,28 @@ export default function ContactForm() {
 
           <div className="space-y-2">
             <Label htmlFor="country">Country</Label>
-            <Select {...register("country")}>
-              <SelectTrigger>
-                <SelectValue placeholder="Select a country" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="US">United States</SelectItem>
-                <SelectItem value="MX">Mexico</SelectItem>
-                <SelectItem value="CA">Canada</SelectItem>
-              </SelectContent>
-              {errors.country && (
-                <p className="text-sm text-red-500">{errors.country.message}</p>
+            <Controller
+              name="country"
+              control={control}
+              render={({ field }) => (
+                <Select
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select a country" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="US">United States</SelectItem>
+                    <SelectItem value="MX">Mexico</SelectItem>
+                    <SelectItem value="CA">Canada</SelectItem>
+                  </SelectContent>
+                </Select>
               )}
-            </Select>
+            />
+            {errors.country && (
+              <p className="text-sm text-red-500">{errors.country.message}</p>
+            )}
           </div>
 
           <Button type="submit" className="w-full">
