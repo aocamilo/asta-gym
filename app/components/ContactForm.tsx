@@ -122,6 +122,7 @@ export default function ContactForm() {
               control={control}
               render={({ field }) => (
                 <Checkbox
+                  name="newsletter"
                   id="newsletter"
                   checked={field.value}
                   onCheckedChange={field.onChange}
@@ -144,6 +145,7 @@ export default function ContactForm() {
                 control={control}
                 render={({ field }) => (
                   <RadioGroup
+                    name="contact"
                     onValueChange={field.onChange}
                     value={field.value}
                     className="flex flex-col space-y-1"
@@ -188,6 +190,7 @@ export default function ContactForm() {
               control={control}
               render={({ field }) => (
                 <Select
+                  name="country"
                   onValueChange={field.onChange}
                   defaultValue={field.value}
                 >
