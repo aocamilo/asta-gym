@@ -1,5 +1,5 @@
-import MissingResources from "../components/MissingResources";
+import { FileUpload } from "../components/file-upload";
 
 export default function FileUploadPage() {
-  return <MissingResources />;
+  return <FileUpload />;
 }
