@@ -28,6 +28,7 @@ const schema = z.object({
   contact: z.enum(["email", "phone", "none"]),
   comments: z.string().optional(),
   country: z.enum(["US", "MX", "CA"]),
+  attachment: z.instanceof(FileList).optional(),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -207,6 +208,21 @@ export default function ContactForm() {
             />
             {errors.country && (
               <p className="text-sm text-red-500">{errors.country.message}</p>
+            )}
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="attachment">Attachment</Label>
+            <Input
+              id="attachment"
+              type="file"
+              {...register("attachment")}
+              className="cursor-pointer"
+            />
+            {errors.attachment && (
+              <p className="text-sm text-red-500">
+                {errors.attachment.message}
+              </p>
             )}
           </div>
 
