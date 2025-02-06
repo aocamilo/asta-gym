@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
+  console.log({ request: JSON.stringify(request) });
+
   try {
     const { client_id, client_secret, code } = await request.json();
 
@@ -14,7 +16,12 @@ export async function POST(request: NextRequest) {
       }
     );
 
+    console.log({ tokenResponse: JSON.stringify(tokenResponse) });
+
     const token = await tokenResponse.json();
+
+    console.log({ token: JSON.stringify(token) });
+
     return NextResponse.json(token, { status: 200 });
   } catch (error) {
     console.error("GitHub Token Proxy Error:", error);
