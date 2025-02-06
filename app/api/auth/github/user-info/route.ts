@@ -40,7 +40,9 @@ export async function GET(request: NextRequest) {
       });
       const emails = await emailsResponse.json();
 
-      const primaryEmail = emails.find((email: any) => email.primary);
+      const primaryEmail = emails.find(
+        (email: { primary: string }) => email.primary
+      );
       email = primaryEmail ? primaryEmail.email : null;
     }
 
