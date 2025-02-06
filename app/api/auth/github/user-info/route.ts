@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(request: NextRequest) {
-  console.log({ request: JSON.stringify(request) });
+  console.log("Request to user-info:", { request: JSON.stringify(request) });
 
   try {
     const authHeader = request.headers.get("authorization");
