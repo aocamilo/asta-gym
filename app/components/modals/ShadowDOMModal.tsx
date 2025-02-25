@@ -19,7 +19,7 @@ const modalStyles = `
   }
 
   .modal-content {
-    background: var(--background);
+    background: white;
     border-radius: 8px;
     padding: 24px;
     width: 90vw;
