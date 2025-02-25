@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
-import playwright from "playwright-core";
-import chromium from "@sparticuz/chromium";
+import { chromium } from "playwright";
 import { writeFileSync } from "fs";
 import path from "path";
 
@@ -8,11 +7,7 @@ export async function POST(req: Request) {
   try {
     const { url } = await req.json();
 
-    const browser = await playwright.chromium.launch({
-      args: chromium.args,
-      executablePath: await chromium.executablePath(),
-      headless: true,
-    });
+    const browser = await chromium.launch();
     const page = await browser.newPage();
 
     await page.setViewportSize({ width: 1920, height: 1080 });

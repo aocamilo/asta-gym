@@ -1,0 +1,531 @@
+{
+  "tag": "html",
+  "id": "",
+  "className": "",
+  "role": "",
+  "innerText": "ASTA | Gym\n        \n        \n        \n        \n        \n    \n\n    \n        \n            The Gym\n    ",
+  "properties": {
+    "x": 0,
+    "y": 0,
+    "width": 1920,
+    "height": 370,
+    "docOrder": 1,
+    "visualImportance": 6.425925925925926
+  },
+  "children": [
+    {
+      "tag": "body",
+      "id": "",
+      "className": "container",
+      "role": "",
+      "innerText": "The Gym\n        \n        \n            \n                \n                    Common Issues\n          ",
+      "properties": {
+        "x": 300,
+        "y": 24,
+        "width": 1320,
+        "height": 346,
+        "docOrder": 3,
+        "visualImportance": 5.202546296296296
+      },
+      "children": [
+        {
+          "tag": "header",
+          "id": "",
+          "className": "row my-4",
+          "role": "",
+          "innerText": "The Gym",
+          "properties": {
+            "x": 300,
+            "y": 24,
+            "width": 1320,
+            "height": 80,
+            "docOrder": 4,
+            "visualImportance": 3.509259259259259
+          },
+          "children": [
+            {
+              "tag": "h1",
+              "id": "",
+              "className": "",
+              "role": "",
+              "innerText": "The Gym",
+              "properties": {
+                "x": 300,
+                "y": 24,
+                "width": 1320,
+                "height": 72,
+                "docOrder": 5,
+                "visualImportance": 4.458333333333333
+              },
+              "children": []
+            }
+          ]
+        },
+        {
+          "tag": "main",
+          "id": "",
+          "className": "container",
+          "role": "",
+          "innerText": "Common Issues\n                    \n                        \n                            Broken link\n",
+          "properties": {
+            "x": 312,
+            "y": 128,
+            "width": 1296,
+            "height": 242,
+            "docOrder": 5,
+            "visualImportance": 6.5125
+          },
+          "children": [
+            {
+              "tag": "main",
+              "id": "",
+              "className": "row",
+              "role": "",
+              "innerText": "Common Issues\n                    \n                        \n                            Broken link\n",
+              "properties": {
+                "x": 312,
+                "y": 128,
+                "width": 1296,
+                "height": 242,
+                "docOrder": 6,
+                "visualImportance": 6.5125
+              },
+              "children": [
+                {
+                  "tag": "section",
+                  "id": "samples-with-issues",
+                  "className": "col-6",
+                  "role": "",
+                  "innerText": "Common Issues\n                    \n                        \n                            Broken link\n",
+                  "properties": {
+                    "x": 336,
+                    "y": 128,
+                    "width": 624,
+                    "height": 242,
+                    "docOrder": 7,
+                    "visualImportance": 4.728240740740741
+                  },
+                  "children": [
+                    {
+                      "tag": "h2",
+                      "id": "",
+                      "className": "",
+                      "role": "",
+                      "innerText": "Common Issues",
+                      "properties": {
+                        "x": 348,
+                        "y": 128,
+                        "width": 600,
+                        "height": 38,
+                        "docOrder": 8,
+                        "visualImportance": 3.6099537037037037
+                      },
+                      "children": []
+                    },
+                    {
+                      "tag": "ul",
+                      "id": "",
+                      "className": "",
+                      "role": "",
+                      "innerText": "Broken link\n                        \n                        \n                            Page with ",
+                      "properties": {
+                        "x": 348,
+                        "y": 174,
+                        "width": 600,
+                        "height": 180,
+                        "docOrder": 9,
+                        "visualImportance": 2.5208333333333335
+                      },
+                      "children": [
+                        {
+                          "tag": "li",
+                          "id": "",
+                          "className": "",
+                          "role": "",
+                          "innerText": "Broken link",
+                          "properties": {
+                            "x": 380,
+                            "y": 174,
+                            "width": 568,
+                            "height": 36,
+                            "docOrder": 10,
+                            "visualImportance": 1.2986111111111112
+                          },
+                          "children": [
+                            {
+                              "tag": "a",
+                              "id": "",
+                              "className": "",
+                              "role": "",
+                              "innerText": "Broken link",
+                              "properties": {
+                                "x": 380,
+                                "y": 178,
+                                "width": 113,
+                                "height": 28,
+                                "docOrder": 11,
+                                "visualImportance": 1.015258487654321
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "li",
+                          "id": "",
+                          "className": "",
+                          "role": "",
+                          "innerText": "Page with accessibility issues",
+                          "properties": {
+                            "x": 380,
+                            "y": 210,
+                            "width": 568,
+                            "height": 36,
+                            "docOrder": 11,
+                            "visualImportance": 1.2986111111111112
+                          },
+                          "children": [
+                            {
+                              "tag": "a",
+                              "id": "",
+                              "className": "",
+                              "role": "",
+                              "innerText": "Page with accessibility issues",
+                              "properties": {
+                                "x": 380,
+                                "y": 214,
+                                "width": 303,
+                                "height": 28,
+                                "docOrder": 12,
+                                "visualImportance": 1.0409143518518518
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "li",
+                          "id": "",
+                          "className": "",
+                          "role": "",
+                          "innerText": "Page with missing resources",
+                          "properties": {
+                            "x": 380,
+                            "y": 246,
+                            "width": 568,
+                            "height": 36,
+                            "docOrder": 12,
+                            "visualImportance": 1.2986111111111112
+                          },
+                          "children": [
+                            {
+                              "tag": "a",
+                              "id": "",
+                              "className": "",
+                              "role": "",
+                              "innerText": "Page with missing resources",
+                              "properties": {
+                                "x": 380,
+                                "y": 250,
+                                "width": 292,
+                                "height": 28,
+                                "docOrder": 13,
+                                "visualImportance": 1.039429012345679
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "li",
+                          "id": "",
+                          "className": "",
+                          "role": "",
+                          "innerText": "Form with bad validation",
+                          "properties": {
+                            "x": 380,
+                            "y": 282,
+                            "width": 568,
+                            "height": 36,
+                            "docOrder": 13,
+                            "visualImportance": 1.2986111111111112
+                          },
+                          "children": [
+                            {
+                              "tag": "a",
+                              "id": "",
+                              "className": "",
+                              "role": "",
+                              "innerText": "Form with bad validation",
+                              "properties": {
+                                "x": 380,
+                                "y": 286,
+                                "width": 251,
+                                "height": 28,
+                                "docOrder": 14,
+                                "visualImportance": 1.0338927469135804
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "li",
+                          "id": "",
+                          "className": "",
+                          "role": "",
+                          "innerText": "Page with error message",
+                          "properties": {
+                            "x": 380,
+                            "y": 318,
+                            "width": 568,
+                            "height": 36,
+                            "docOrder": 14,
+                            "visualImportance": 1.2986111111111112
+                          },
+                          "children": [
+                            {
+                              "tag": "a",
+                              "id": "",
+                              "className": "",
+                              "role": "",
+                              "innerText": "Page with error message",
+                              "properties": {
+                                "x": 380,
+                                "y": 322,
+                                "width": 253,
+                                "height": 28,
+                                "docOrder": 15,
+                                "visualImportance": 1.0341628086419754
+                              },
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "tag": "section",
+                  "id": "samples",
+                  "className": "col-6",
+                  "role": "",
+                  "innerText": "Agent Challenges\n                    \n                        \n                            Selector ",
+                  "properties": {
+                    "x": 960,
+                    "y": 128,
+                    "width": 624,
+                    "height": 242,
+                    "docOrder": 8,
+                    "visualImportance": 4.728240740740741
+                  },
+                  "children": [
+                    {
+                      "tag": "h2",
+                      "id": "",
+                      "className": "",
+                      "role": "",
+                      "innerText": "Agent Challenges",
+                      "properties": {
+                        "x": 972,
+                        "y": 128,
+                        "width": 600,
+                        "height": 38,
+                        "docOrder": 9,
+                        "visualImportance": 3.6099537037037037
+                      },
+                      "children": []
+                    },
+                    {
+                      "tag": "ul",
+                      "id": "",
+                      "className": "",
+                      "role": "",
+                      "innerText": "Selector Tests\n                        \n                        \n                            Search ",
+                      "properties": {
+                        "x": 972,
+                        "y": 174,
+                        "width": 600,
+                        "height": 180,
+                        "docOrder": 10,
+                        "visualImportance": 2.5208333333333335
+                      },
+                      "children": [
+                        {
+                          "tag": "li",
+                          "id": "",
+                          "className": "",
+                          "role": "",
+                          "innerText": "Selector Tests",
+                          "properties": {
+                            "x": 1004,
+                            "y": 174,
+                            "width": 568,
+                            "height": 36,
+                            "docOrder": 11,
+                            "visualImportance": 1.2986111111111112
+                          },
+                          "children": [
+                            {
+                              "tag": "a",
+                              "id": "",
+                              "className": "",
+                              "role": "",
+                              "innerText": "Selector Tests",
+                              "properties": {
+                                "x": 1004,
+                                "y": 178,
+                                "width": 145,
+                                "height": 28,
+                                "docOrder": 12,
+                                "visualImportance": 1.019579475308642
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "li",
+                          "id": "",
+                          "className": "",
+                          "role": "",
+                          "innerText": "Search Form Tests",
+                          "properties": {
+                            "x": 1004,
+                            "y": 210,
+                            "width": 568,
+                            "height": 36,
+                            "docOrder": 12,
+                            "visualImportance": 1.2986111111111112
+                          },
+                          "children": [
+                            {
+                              "tag": "a",
+                              "id": "",
+                              "className": "",
+                              "role": "",
+                              "innerText": "Search Form Tests",
+                              "properties": {
+                                "x": 1004,
+                                "y": 214,
+                                "width": 190,
+                                "height": 28,
+                                "docOrder": 13,
+                                "visualImportance": 1.0256558641975309
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "li",
+                          "id": "",
+                          "className": "",
+                          "role": "",
+                          "innerText": "Complex form with spec",
+                          "properties": {
+                            "x": 1004,
+                            "y": 246,
+                            "width": 568,
+                            "height": 36,
+                            "docOrder": 13,
+                            "visualImportance": 1.2986111111111112
+                          },
+                          "children": [
+                            {
+                              "tag": "a",
+                              "id": "",
+                              "className": "",
+                              "role": "",
+                              "innerText": "Complex form with spec",
+                              "properties": {
+                                "x": 1004,
+                                "y": 250,
+                                "width": 249,
+                                "height": 28,
+                                "docOrder": 14,
+                                "visualImportance": 1.0336226851851853
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "li",
+                          "id": "",
+                          "className": "",
+                          "role": "",
+                          "innerText": "Link Tests",
+                          "properties": {
+                            "x": 1004,
+                            "y": 282,
+                            "width": 568,
+                            "height": 36,
+                            "docOrder": 14,
+                            "visualImportance": 1.2986111111111112
+                          },
+                          "children": [
+                            {
+                              "tag": "a",
+                              "id": "",
+                              "className": "",
+                              "role": "",
+                              "innerText": "Link Tests",
+                              "properties": {
+                                "x": 1004,
+                                "y": 286,
+                                "width": 103,
+                                "height": 28,
+                                "docOrder": 15,
+                                "visualImportance": 1.0139081790123456
+                              },
+                              "children": []
+                            }
+                          ]
+                        },
+                        {
+                          "tag": "li",
+                          "id": "",
+                          "className": "",
+                          "role": "",
+                          "innerText": "Form Input Tests",
+                          "properties": {
+                            "x": 1004,
+                            "y": 318,
+                            "width": 568,
+                            "height": 36,
+                            "docOrder": 15,
+                            "visualImportance": 1.2986111111111112
+                          },
+                          "children": [
+                            {
+                              "tag": "a",
+                              "id": "",
+                              "className": "",
+                              "role": "",
+                              "innerText": "Form Input Tests",
+                              "properties": {
+                                "x": 1004,
+                                "y": 322,
+                                "width": 171,
+                                "height": 28,
+                                "docOrder": 16,
+                                "visualImportance": 1.0230902777777777
+                              },
+                              "children": []
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
