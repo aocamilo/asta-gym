@@ -27,36 +27,87 @@ const modalStyles = `
     animation: modalIn 0.3s ease-out;
   }
 
-  .confirmation-icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 auto 16px;
-    border-radius: 50%;
-    background: var(--primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-  }
-
   .title {
     font-size: 24px;
     font-weight: bold;
-    text-align: center;
     margin-bottom: 16px;
     color: var(--foreground);
   }
 
-  .description {
-    text-align: center;
-    margin-bottom: 24px;
-    color: var(--muted-foreground);
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .label {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--foreground);
+  }
+
+  .input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--background);
+    color: var(--foreground);
+    font-size: 14px;
+  }
+
+  .textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--background);
+    color: var(--foreground);
+    font-size: 14px;
+    resize: vertical;
   }
 
   .actions {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     gap: 8px;
+    margin-top: 16px;
+  }
+
+  .button {
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+
+  .button-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--foreground);
+  }
+
+  .button-outline:hover {
+    background: var(--accent);
+  }
+
+  .button-primary {
+    background: var(--primary);
+    border: none;
+    color: white;
+  }
+
+  .button-primary:hover {
+    background: var(--primary-dark);
   }
 
   @keyframes modalIn {
@@ -106,15 +157,25 @@ export default function ShadowDOMModal({
       modalContent.className = "modal-backdrop";
       modalContent.innerHTML = `
         <div class="modal-content">
-          <div class="confirmation-icon">✓</div>
-          <h2 class="title">Action Confirmed</h2>
-          <p class="description">
-            Your action has been successfully completed. Would you like to continue?
-          </p>
-          <div class="actions">
-            <button id="cancel-btn" class="cancel">Cancel</button>
-            <button id="confirm-btn" class="confirm">Continue</button>
-          </div>
+          <h2 class="title">Contact Form</h2>
+          <form class="form">
+            <div class="form-group">
+              <label class="label" for="name">Name</label>
+              <input class="input" id="name" placeholder="Enter your name" autocomplete="name" />
+            </div>
+            <div class="form-group">
+              <label class="label" for="email">Email</label>
+              <input class="input" id="email" type="email" placeholder="Enter your email" autocomplete="email" />
+            </div>
+            <div class="form-group">
+              <label class="label" for="message">Message</label>
+              <textarea class="textarea" id="message" placeholder="Your message..."></textarea>
+            </div>
+            <div class="actions">
+              <button type="button" class="button button-outline" id="cancel-btn">Cancel</button>
+              <button type="submit" class="button button-primary">Submit</button>
+            </div>
+          </form>
         </div>
       `;
 
@@ -122,16 +183,17 @@ export default function ShadowDOMModal({
 
       // Add event listeners
       const cancelBtn = shadowRootRef.current.getElementById("cancel-btn");
-      const confirmBtn = shadowRootRef.current.getElementById("confirm-btn");
       const backdrop = shadowRootRef.current.querySelector(".modal-backdrop");
+      const form = shadowRootRef.current.querySelector("form");
 
       cancelBtn?.addEventListener("click", onClose);
-      confirmBtn?.addEventListener("click", () => {
-        console.log("Confirmed!");
-        onClose();
-      });
       backdrop?.addEventListener("click", (e) => {
         if (e.target === backdrop) onClose();
+      });
+      form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Handle form submission here
+        onClose();
       });
     }
 

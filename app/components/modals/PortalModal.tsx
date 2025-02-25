@@ -4,7 +4,8 @@ import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 interface PortalModalProps {
   isOpen: boolean;
@@ -42,55 +43,45 @@ export default function PortalModal({ isOpen, onClose }: PortalModalProps) {
         className="animate-in zoom-in-90 duration-300"
         role="dialog"
         aria-modal="true"
-        aria-labelledby="gallery-title"
+        aria-labelledby="modal-title"
       >
-        <Card className="w-[90vw] max-w-3xl p-6">
-          <h2 id="gallery-title" className="text-2xl font-bold mb-4">
-            Image Gallery
+        <Card className="w-[90vw] max-w-lg p-6">
+          <h2 id="modal-title" className="text-2xl font-bold mb-4">
+            Contact Form
           </h2>
-          <Tabs defaultValue="nature" className="w-full">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="nature">Nature</TabsTrigger>
-              <TabsTrigger value="architecture">Architecture</TabsTrigger>
-              <TabsTrigger value="abstract">Abstract</TabsTrigger>
-            </TabsList>
-            <TabsContent value="nature" className="mt-4">
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {/* Placeholder images - replace with actual gallery images */}
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="aspect-square bg-muted rounded-lg animate-pulse"
-                  />
-                ))}
-              </div>
-            </TabsContent>
-            <TabsContent value="architecture" className="mt-4">
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="aspect-square bg-muted rounded-lg animate-pulse"
-                  />
-                ))}
-              </div>
-            </TabsContent>
-            <TabsContent value="abstract" className="mt-4">
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                {Array.from({ length: 6 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="aspect-square bg-muted rounded-lg animate-pulse"
-                  />
-                ))}
-              </div>
-            </TabsContent>
-          </Tabs>
-          <div className="flex justify-end mt-6">
-            <Button variant="outline" onClick={onClose}>
-              Close Gallery
-            </Button>
-          </div>
+          <form className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="name">Name</Label>
+              <Input
+                id="name"
+                placeholder="Enter your name"
+                autoComplete="name"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="email">Email</Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Enter your email"
+                autoComplete="email"
+              />
+            </div>
+            <div className="space-y-2">
+              <Label htmlFor="message">Message</Label>
+              <textarea
+                id="message"
+                className="w-full min-h-[100px] rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                placeholder="Your message..."
+              />
+            </div>
+            <div className="flex justify-end space-x-2">
+              <Button variant="outline" onClick={onClose}>
+                Cancel
+              </Button>
+              <Button type="submit">Submit</Button>
+            </div>
+          </form>
         </Card>
       </div>
     </div>,
