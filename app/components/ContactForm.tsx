@@ -150,9 +150,9 @@ export default function ContactForm() {
               placeholder="Your name"
               maxLength={80}
             />
-            {/* {errors.name && (
+            {errors.name && (
               <p className="text-sm text-red-500">{errors.name.message}</p>
-            )} */}
+            )}
           </div>
 
           <div className="space-y-2">
@@ -163,9 +163,9 @@ export default function ContactForm() {
               placeholder="Street address"
               maxLength={80}
             />
-            {/* {errors.street && (
+            {errors.street && (
               <p className="text-sm text-red-500">{errors.street.message}</p>
-            )} */}
+            )}
           </div>
 
           <div className="grid grid-cols-2 gap-4">
@@ -177,9 +177,9 @@ export default function ContactForm() {
                 placeholder="City"
                 maxLength={80}
               />
-              {/* {errors.city && (
+              {errors.city && (
                 <p className="text-sm text-red-500">{errors.city.message}</p>
-              )} */}
+              )}
             </div>
 
             <div className="space-y-2">
@@ -190,9 +190,9 @@ export default function ContactForm() {
                 placeholder="Zip Code"
                 maxLength={10}
               />
-              {/* {errors.zip && (
+              {errors.zip && (
                 <p className="text-sm text-red-500">{errors.zip.message}</p>
-              )} */}
+              )}
             </div>
           </div>
 
@@ -210,11 +210,11 @@ export default function ContactForm() {
               )}
             />
             <Label htmlFor="newsletter">Subscribe to newsletter</Label>
-            {/* {errors.newsletter && (
+            {errors.newsletter && (
               <p className="text-sm text-red-500">
                 {errors.newsletter.message}
               </p>
-            )} */}
+            )}
           </div>
 
           <div className="flex items-center space-x-2">
@@ -246,9 +246,9 @@ export default function ContactForm() {
                 )}
               />
             </div>
-            {/* {errors.contact && (
+            {errors.contact && (
               <p className="text-sm text-red-500">{errors.contact.message}</p>
-            )} */}
+            )}
           </div>
 
           {contactMethod === "email" && (
@@ -261,12 +261,12 @@ export default function ContactForm() {
                 placeholder="your.email@example.com"
                 className={errors.email ? "border-red-500" : ""}
               />
-              {/* {errors.email && (
+              {errors.email && (
                 <p className="text-sm text-red-500">{errors.email.message}</p>
               )}
               {errors.contact && contactMethod === "email" && (
                 <p className="text-sm text-red-500">{errors.contact.message}</p>
-              )} */}
+              )}
             </div>
           )}
 
@@ -280,12 +280,12 @@ export default function ContactForm() {
                 placeholder="1234567890"
                 className={errors.phone ? "border-red-500" : ""}
               />
-              {/* {errors.phone && (
+              {errors.phone && (
                 <p className="text-sm text-red-500">{errors.phone.message}</p>
               )}
               {errors.contact && contactMethod === "phone" && (
                 <p className="text-sm text-red-500">{errors.contact.message}</p>
-              )} */}
+              )}
             </div>
           )}
 
@@ -296,9 +296,9 @@ export default function ContactForm() {
               {...register("comments")}
               placeholder="Your comments..."
             />
-            {/* {errors.comments && (
+            {errors.comments && (
               <p className="text-sm text-red-500">{errors.comments.message}</p>
-            )} */}
+            )}
           </div>
 
           <div className="space-y-2">
@@ -323,9 +323,9 @@ export default function ContactForm() {
                 </Select>
               )}
             />
-            {/* {errors.country && (
+            {errors.country && (
               <p className="text-sm text-red-500">{errors.country.message}</p>
-            )} */}
+            )}
           </div>
 
           <div className="space-y-2">
@@ -336,11 +336,11 @@ export default function ContactForm() {
               {...register("attachment")}
               className="cursor-pointer"
             />
-            {/* {errors.attachment && (
+            {errors.attachment && (
               <p className="text-sm text-red-500">
                 {errors.attachment.message}
               </p>
-            )} */}
+            )}
           </div>
 
           <Button type="submit" className="w-full" disabled={isSubmitting}>
