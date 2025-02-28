@@ -98,7 +98,7 @@ const schema = z
     },
     {
       message:
-        "Contact information is required based on your selected contact method",
+        "Contact information is required based on your selected contact method.",
       path: ["contact"],
     }
   );
