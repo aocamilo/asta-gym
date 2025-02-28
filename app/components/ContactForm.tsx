@@ -19,17 +19,89 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-const schema = z.object({
-  name: z.string().min(1, "Name is required"),
-  street: z.string().min(1, "Street is required"),
-  city: z.string().min(1, "City is required"),
-  zip: z.string().regex(/^\d+$/, "Zip code must be numeric"),
-  newsletter: z.boolean().optional(),
-  contact: z.enum(["email", "phone", "none"]),
-  comments: z.string().optional(),
-  country: z.enum(["US", "MX", "CA"]),
-  attachment: z.instanceof(FileList).optional(),
-});
+const schema = z
+  .object({
+    name: z
+      .string()
+      .min(1, "Name is required")
+      .regex(
+        /^[a-zA-Z\s'-]+$/,
+        "Name should only contain letters, spaces, hyphens and apostrophes"
+      ),
+    street: z
+      .string()
+      .min(1, "Street is required")
+      .regex(
+        /^\d+\s[a-zA-Z0-9\s.,'-]+$/,
+        "Street should start with a number followed by street name"
+      ),
+    city: z
+      .string()
+      .min(1, "City is required")
+      .regex(
+        /^[a-zA-Z\s.-]+$/,
+        "City should only contain letters, spaces, periods and hyphens"
+      ),
+    zip: z
+      .string()
+      .regex(
+        /^\d{5}(-\d{4})?$/,
+        "Zip code must be 5 digits or 5+4 format (e.g., 12345 or 12345-6789)"
+      ),
+    newsletter: z.boolean().optional(),
+    contact: z.enum(["email", "phone", "none"]),
+    email: z
+      .string()
+      .email("Invalid email address")
+      .optional()
+      .or(z.literal("")),
+    phone: z
+      .string()
+      .regex(/^\d{10}$/, "Phone must be 10 digits (e.g., 1234567890)")
+      .optional()
+      .or(z.literal("")),
+    comments: z
+      .string()
+      .max(500, "Comments must be less than 500 characters")
+      .optional(),
+    country: z.enum(["US", "MX", "CA"]),
+    attachment: z
+      .instanceof(FileList)
+      .optional()
+      .refine(
+        (files) => {
+          if (!files || files.length === 0) return true;
+          return Array.from(files).every(
+            (file) => file.size <= 5 * 1024 * 1024
+          );
+        },
+        {
+          message: "Each file must be less than 5MB",
+        }
+      ),
+  })
+  .refine(
+    (data) => {
+      if (
+        data.contact === "email" &&
+        (!data.email || data.email.length === 0)
+      ) {
+        return false;
+      }
+      if (
+        data.contact === "phone" &&
+        (!data.phone || data.phone.length === 0)
+      ) {
+        return false;
+      }
+      return true;
+    },
+    {
+      message:
+        "Contact information is required based on your selected contact method",
+      path: ["contact"],
+    }
+  );
 
 type FormData = z.infer<typeof schema>;
 
@@ -38,16 +110,23 @@ export default function ContactForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     control,
+    watch,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
       newsletter: false,
       contact: "none",
       country: "US",
+      email: "",
+      phone: "",
+      comments: "",
     },
+    mode: "onChange",
   });
+
+  const contactMethod = watch("contact");
 
   const onSubmit = (data: FormData) => {
     console.log(data);
@@ -172,6 +251,44 @@ export default function ContactForm() {
             )}
           </div>
 
+          {contactMethod === "email" && (
+            <div className="space-y-2">
+              <Label htmlFor="email">Email Address</Label>
+              <Input
+                id="email"
+                type="email"
+                {...register("email")}
+                placeholder="your.email@example.com"
+                className={errors.email ? "border-red-500" : ""}
+              />
+              {errors.email && (
+                <p className="text-sm text-red-500">{errors.email.message}</p>
+              )}
+              {errors.contact && contactMethod === "email" && (
+                <p className="text-sm text-red-500">{errors.contact.message}</p>
+              )}
+            </div>
+          )}
+
+          {contactMethod === "phone" && (
+            <div className="space-y-2">
+              <Label htmlFor="phone">Phone Number</Label>
+              <Input
+                id="phone"
+                type="tel"
+                {...register("phone")}
+                placeholder="1234567890"
+                className={errors.phone ? "border-red-500" : ""}
+              />
+              {errors.phone && (
+                <p className="text-sm text-red-500">{errors.phone.message}</p>
+              )}
+              {errors.contact && contactMethod === "phone" && (
+                <p className="text-sm text-red-500">{errors.contact.message}</p>
+              )}
+            </div>
+          )}
+
           <div className="space-y-2">
             <Label htmlFor="comments">Comments</Label>
             <Textarea
@@ -226,8 +343,8 @@ export default function ContactForm() {
             )}
           </div>
 
-          <Button type="submit" className="w-full">
-            Save Contact Info
+          <Button type="submit" className="w-full" disabled={isSubmitting}>
+            {isSubmitting ? "Saving..." : "Save Contact Info"}
           </Button>
         </form>
 
