@@ -149,6 +149,7 @@ export default function ContactForm() {
               {...register("name")}
               placeholder="Your name"
               maxLength={80}
+              className={errors.name ? "input-error" : ""}
             />
             {errors.name && (
               <p className="text-sm text-red-500">{errors.name.message}</p>
@@ -162,6 +163,7 @@ export default function ContactForm() {
               {...register("street")}
               placeholder="Street address"
               maxLength={80}
+              className={errors.street ? "input-error" : ""}
             />
             {errors.street && (
               <p className="text-sm text-red-500">{errors.street.message}</p>
@@ -176,6 +178,7 @@ export default function ContactForm() {
                 {...register("city")}
                 placeholder="City"
                 maxLength={80}
+                className={errors.city ? "input-error" : ""}
               />
               {errors.city && (
                 <p className="text-sm text-red-500">{errors.city.message}</p>
@@ -189,6 +192,7 @@ export default function ContactForm() {
                 {...register("zip")}
                 placeholder="Zip Code"
                 maxLength={10}
+                className={errors.zip ? "input-error" : ""}
               />
               {errors.zip && (
                 <p className="text-sm text-red-500">{errors.zip.message}</p>
@@ -259,7 +263,7 @@ export default function ContactForm() {
                 type="email"
                 {...register("email")}
                 placeholder="your.email@example.com"
-                className={errors.email ? "border-red-500" : ""}
+                className={errors.email ? "input-error" : ""}
               />
               {errors.email && (
                 <p className="text-sm text-red-500">{errors.email.message}</p>
@@ -278,7 +282,7 @@ export default function ContactForm() {
                 type="tel"
                 {...register("phone")}
                 placeholder="1234567890"
-                className={errors.phone ? "border-red-500" : ""}
+                className={errors.phone ? "input-error" : ""}
               />
               {errors.phone && (
                 <p className="text-sm text-red-500">{errors.phone.message}</p>
@@ -295,6 +299,7 @@ export default function ContactForm() {
               id="comments"
               {...register("comments")}
               placeholder="Your comments..."
+              className={errors.comments ? "input-error" : ""}
             />
             {errors.comments && (
               <p className="text-sm text-red-500">{errors.comments.message}</p>
@@ -334,7 +339,9 @@ export default function ContactForm() {
               id="attachment"
               type="file"
               {...register("attachment")}
-              className="cursor-pointer"
+              className={`cursor-pointer ${
+                errors.attachment ? "input-error" : ""
+              }`}
             />
             {errors.attachment && (
               <p className="text-sm text-red-500">
