@@ -276,7 +276,8 @@ export function UsersTable() {
                       target="_blank"
                       className="text-blue-600 hover:underline flex items-center"
                     >
-                      Visit <span className="ml-1">→</span>
+                      Visit {user.name}&apos;s site{" "}
+                      <span className="ml-1">→</span>
                     </Link>
                   ) : (
                     <span className="text-gray-400">N/A</span>
