@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+// import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import {
   Select,
   SelectContent,
@@ -262,7 +262,7 @@ export function ComplexForm() {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         {/* 1. Type of Submission */}
-        <FormField
+        {/* <FormField
           control={form.control}
           name="submissionType"
           render={({ field }) => (
@@ -295,7 +295,7 @@ export function ComplexForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
 
         {/* 2. Date Submitted */}
         <FormField
@@ -601,7 +601,7 @@ export function ComplexForm() {
             )}
           />
 
-          <FormField
+          {/* <FormField
             control={form.control}
             name="applicantInfo.womenOwned"
             render={({ field }) => (
@@ -626,9 +626,9 @@ export function ComplexForm() {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
 
-          <FormField
+          {/* <FormField
             control={form.control}
             name="applicantInfo.disadvantaged"
             render={({ field }) => (
@@ -655,7 +655,7 @@ export function ComplexForm() {
                 <FormMessage />
               </FormItem>
             )}
-          />
+          /> */}
 
           <div className="space-y-4">
             <h4 className="font-medium">Person to be Contacted</h4>
@@ -1620,7 +1620,7 @@ export function ComplexForm() {
         </div>
 
         {/* 17. State Review */}
-        <FormField
+        {/* <FormField
           control={form.control}
           name="stateReview"
           render={({ field }) => (
@@ -1658,10 +1658,10 @@ export function ComplexForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
 
         {/* 18. Federal Debt */}
-        <FormField
+        {/* <FormField
           control={form.control}
           name="federalDebt"
           render={({ field }) => (
@@ -1690,7 +1690,7 @@ export function ComplexForm() {
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
 
         {/* 19. Authorized Representative */}
         <div className="space-y-4">
