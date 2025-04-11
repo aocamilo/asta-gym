@@ -157,7 +157,7 @@ export default function LinksList() {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${getColorClass()} transition-colors duration-200`}
+              className={`${getColorClass()}`}
             >
               {link.label}
             </a>
