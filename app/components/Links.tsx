@@ -7,7 +7,15 @@ type LinkItem = {
   id: number;
   url: string;
   label: string;
-  type: "website" | "mailto" | "tel" | "sms" | "javascript" | "ftp" | "broken";
+  type:
+    | "website"
+    | "mailto"
+    | "tel"
+    | "sms"
+    | "javascript"
+    | "ftp"
+    | "broken"
+    | "default";
 };
 
 export default function LinksList() {
@@ -91,6 +99,12 @@ export default function LinksList() {
       label: "Internal broken link",
       type: "broken",
     },
+    {
+      id: 14,
+      url: "https://example.com/default",
+      label: "Default Link",
+      type: "default",
+    },
   ];
 
   // Function to render link with appropriate styling
@@ -111,6 +125,8 @@ export default function LinksList() {
           return "text-orange-600 hover:text-orange-800";
         case "broken":
           return "text-red-600 line-through opacity-50";
+        case "default":
+          return "text-gray-600";
         default:
           return "";
       }
