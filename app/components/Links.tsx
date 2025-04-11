@@ -122,6 +122,7 @@ export default function LinksList() {
         case "javascript":
           return (
             <a
+              id={`link-${link.id}-${link.type}`}
               href="#"
               onClick={(e) => {
                 e.preventDefault();
@@ -136,6 +137,7 @@ export default function LinksList() {
         default:
           return (
             <a
+              id={`link-${link.id}-${link.type}`}
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
