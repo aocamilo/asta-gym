@@ -184,6 +184,33 @@ export default function LinksList() {
         <div className="space-y-4">
           <h2 className="text-lg font-semibold">All Types of Links</h2>
           {links.map(renderLink)}
+
+          <div className="mt-6 pt-4 border-t border-gray-200">
+            <h2 className="text-lg font-semibold mb-3">Link in Form</h2>
+            <form
+              onSubmit={(e) => e.preventDefault()}
+              className="p-3 bg-gray-50 rounded-md"
+            >
+              <p className="mb-2">This is a link inside a form:</p>
+              <a
+                id="form-link"
+                href="https://example.com/form-link"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-blue-600"
+              >
+                Form Link Example
+              </a>
+              <div className="mt-3">
+                <button
+                  type="submit"
+                  className="px-3 py-1 bg-blue-500 text-white rounded-md text-sm"
+                >
+                  Submit Form
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </CardContent>
     </Card>
