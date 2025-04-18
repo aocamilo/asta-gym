@@ -141,7 +141,11 @@ export default function ContactForm() {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-4"
+          id="contact-form"
+        >
           <div className="space-y-2">
             <Label htmlFor="name">Name</Label>
             <Input
