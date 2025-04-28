@@ -1,6 +1,42 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 
 export default function ClassificationPage() {
+  // State for the click counter
+  const [clickCount, setClickCount] = useState(0);
+  // State for the active menu item
+  const [activeMenu, setActiveMenu] = useState("Home");
+  // State for form inputs
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+
+  const handleLearnMoreClick = () => {
+    setClickCount((prevCount) => prevCount + 1);
+  };
+
+  const handleMenuClick = (menuItem: string) => {
+    setActiveMenu(menuItem);
+  };
+
+  const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setName(event.target.value);
+  };
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    // Basic submission logic (e.g., log to console)
+    console.log("Form Submitted:", { name, email });
+    // You would typically send this data to a server here
+    alert(`Thank you, ${name}! We received your email: ${email}`);
+    // Clear fields after submission
+    setName("");
+    setEmail("");
+  };
+
   return (
     <div id="page-container">
       {/* Navigation Bar */}
@@ -9,10 +45,19 @@ export default function ClassificationPage() {
           <span>Logo</span>
         </div>
         <div className="menu-container">
-          <div className="menu-item">Home</div>
-          <div className="menu-item">About</div>
-          <div className="menu-item">Services</div>
-          <div className="menu-item">Contact</div>
+          {["Home", "About", "Services", "Contact"].map((item) => (
+            <div
+              key={item}
+              className={`menu-item ${activeMenu === item ? "active" : ""}`}
+              onClick={() => handleMenuClick(item)}
+              style={{
+                cursor: "pointer",
+                fontWeight: activeMenu === item ? "bold" : "normal",
+              }}
+            >
+              {item}
+            </div>
+          ))}
         </div>
         <div id="cta-button" className="button primary-button">
           Sign Up
@@ -23,7 +68,13 @@ export default function ClassificationPage() {
       <div id="hero-section" className="section hero">
         <h1>Welcome to Our Landing Page</h1>
         <p>This is a description of what we offer.</p>
-        <div id="learn-more-button" className="button secondary-button">
+        <p>Button Clicks: {clickCount}</p>
+        <div
+          id="learn-more-button"
+          className="button secondary-button"
+          onClick={handleLearnMoreClick}
+          style={{ cursor: "pointer" }}
+        >
           Learn More
         </div>
       </div>
@@ -43,6 +94,43 @@ export default function ClassificationPage() {
           <div className="card">
             <h3>Feature Three</h3>
             <p>Description of feature three.</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact Form Section */}
+      <div id="contact-section" className="section contact-form">
+        <h2>Contact Us</h2>
+        <div className="form-container">
+          <div className="form-group">
+            <span className="form-label">Name:</span>
+            <input
+              type="text"
+              id="name-input"
+              className="form-input"
+              value={name}
+              onChange={handleNameChange}
+              placeholder="Your Name"
+            />
+          </div>
+          <div className="form-group">
+            <span className="form-label">Email:</span>
+            <input
+              type="email"
+              id="email-input"
+              className="form-input"
+              value={email}
+              onChange={handleEmailChange}
+              placeholder="Your Email"
+            />
+          </div>
+          <div
+            id="submit-button"
+            className="button primary-button"
+            onClick={handleSubmit}
+            style={{ cursor: "pointer", marginTop: "10px" }}
+          >
+            Submit
           </div>
         </div>
       </div>
