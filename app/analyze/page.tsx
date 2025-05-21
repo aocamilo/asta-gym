@@ -7,7 +7,6 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { AlertCircle } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Metadata } from "next";
 
 interface VIPSComponent {
   tag: string;
@@ -26,11 +25,11 @@ interface VIPSComponent {
   children: VIPSComponent[];
 }
 
-export const metadata: Metadata = {
-  title: "Analyze Page",
-};
-
 export default function Home() {
+  useEffect(() => {
+    document.title = "Analyze Page";
+  }, []);
+
   const [url, setUrl] = useState("");
   const [vipsModel, setVipsModel] = useState<VIPSComponent | null>(null);
   const [screenshot, setScreenshot] = useState<string | null>(null);

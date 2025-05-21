@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import StandardModal from "../components/modals/StandardModal";
@@ -8,13 +8,12 @@ import PortalModal from "../components/modals/PortalModal";
 import ShadowDOMModal from "../components/modals/ShadowDOMModal";
 import IframeModal from "../components/modals/IframeModal";
 import RadixModal from "../components/modals/RadixModal";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Modal Showcase Page",
-};
 
 export default function ModalShowcase() {
+  useEffect(() => {
+    document.title = "Modal Showcase Page";
+  }, []);
+
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   const closeModal = () => setActiveModal(null);

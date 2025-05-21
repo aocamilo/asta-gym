@@ -1,13 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Classification Page",
-};
+import React, { useState, useEffect } from "react";
 
 export default function ClassificationPage() {
+  useEffect(() => {
+    document.title = "Classification Page";
+  }, []);
+
   // State for the click counter
   const [clickCount, setClickCount] = useState(0);
   // State for the active menu item

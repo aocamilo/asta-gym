@@ -1,13 +1,13 @@
 "use client";
 
 import { UsersTable } from "../../components/UsersTable";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Users Page",
-};
+import { useEffect } from "react";
 
 export default function UsersPage() {
+  useEffect(() => {
+    document.title = "Users Page";
+  }, []);
+
   return (
     <div className="container p-6">
       <div className="mb-6">
