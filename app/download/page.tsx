@@ -1,9 +1,14 @@
 import dynamic from "next/dynamic";
+import { Metadata } from "next";
 
 const DynamicDownload = dynamic(() => import("../components/Download"), {
   ssr: false,
   loading: () => <p>Loading download component...</p>,
 });
+
+export const metadata: Metadata = {
+  title: "Download Page",
+};
 
 export default function DownloadPage() {
   return (

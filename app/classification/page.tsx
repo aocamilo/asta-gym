@@ -1,6 +1,11 @@
 "use client";
 
 import React, { useState } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Classification Page",
+};
 
 export default function ClassificationPage() {
   // State for the click counter

@@ -1,4 +1,9 @@
 import { ComplexForm } from "./complex-form";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Complex Form Page",
+};
 
 export default function ComplexFormPage() {
   return (

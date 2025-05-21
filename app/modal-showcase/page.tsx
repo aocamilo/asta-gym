@@ -8,6 +8,11 @@ import PortalModal from "../components/modals/PortalModal";
 import ShadowDOMModal from "../components/modals/ShadowDOMModal";
 import IframeModal from "../components/modals/IframeModal";
 import RadixModal from "../components/modals/RadixModal";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Modal Showcase Page",
+};
 
 export default function ModalShowcase() {
   const [activeModal, setActiveModal] = useState<string | null>(null);

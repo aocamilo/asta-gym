@@ -1,10 +1,15 @@
 // app/page.tsx
 import dynamic from "next/dynamic";
+import { Metadata } from "next";
 
 const DynamicForm = dynamic(() => import("./components/ContactForm"), {
   ssr: false,
   loading: () => <p>Loading form...</p>,
 });
+
+export const metadata: Metadata = {
+  title: "Home Page",
+};
 
 export default function Home() {
   return (

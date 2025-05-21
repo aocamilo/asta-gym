@@ -1,3 +1,6 @@
+import Image from "next/image";
+import { Metadata } from "next";
+
 interface PokemonListItem {
   name: string;
   url: string;
@@ -11,6 +14,10 @@ async function getPokemons(): Promise<PokemonListItem[]> {
   const data = await res.json();
   return data.results;
 }
+
+export const metadata: Metadata = {
+  title: "Pokemon Page",
+};
 
 export default async function PokemonPage() {
   const pokemons = await getPokemons();
@@ -29,10 +36,12 @@ export default async function PokemonPage() {
               key={index}
               className="bg-white shadow-xl rounded-lg p-5 border border-gray-200 hover:shadow-2xl transition-shadow duration-300 ease-in-out"
             >
-              <img
+              <Image
                 src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemonId}.png`}
                 alt={pokemon.name}
-                className="w-32 h-32 mx-auto mb-4 transition-transform duration-300 ease-in-out hover:scale-110"
+                width={128}
+                height={128}
+                className="mx-auto mb-4 transition-transform duration-300 ease-in-out hover:scale-110"
               />
               <h2 className="text-xl font-semibold text-center capitalize mb-3">
                 {pokemon.name}

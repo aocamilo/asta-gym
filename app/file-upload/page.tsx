@@ -1,4 +1,9 @@
 import FileUpload from "../components/file-upload";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "File Upload Page",
+};
 
 export default function UploadPage() {
   return (

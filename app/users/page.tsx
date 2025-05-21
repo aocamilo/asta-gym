@@ -1,6 +1,11 @@
 "use client";
 
 import { UsersTable } from "../../components/UsersTable";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Users Page",
+};
 
 export default function UsersPage() {
   return (

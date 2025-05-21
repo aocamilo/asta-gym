@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 interface PokemonDetail {
   name: string;
   id: number;
@@ -33,13 +35,15 @@ export default async function PokemonDetailPage({
   return (
     <div className="container mx-auto p-4 max-w-2xl">
       <div className="bg-white shadow-xl rounded-lg p-8 border border-gray-200">
-        <img
+        <Image
           src={
             pokemon.sprites.other["official-artwork"].front_default ||
             pokemon.sprites.front_default
           }
           alt={pokemon.name}
-          className="w-64 h-64 mx-auto mb-6 transition-transform duration-300 ease-in-out hover:scale-110"
+          width={256}
+          height={256}
+          className="mx-auto mb-6 transition-transform duration-300 ease-in-out hover:scale-110"
         />
         <h1 className="text-4xl font-bold text-center capitalize mb-6">
           {pokemon.name}
