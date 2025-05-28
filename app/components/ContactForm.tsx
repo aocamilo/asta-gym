@@ -42,12 +42,19 @@ const schema = z
         /^[a-zA-Z\s.-]+$/,
         "City should only contain letters, spaces, periods and hyphens"
       ),
-    zip: z
+    zip5: z
+      .string()
+      .regex(/^\d{5}$/, "Zip code must be 5 digits (e.g., 12345)")
+      .optional()
+      .or(z.literal("")),
+    zip9: z
       .string()
       .regex(
-        /^\d{5}(-\d{4})?$/,
-        "Zip code must be 5 digits or 5+4 format (e.g., 12345 or 12345-6789)"
-      ),
+        /^\d{5}-\d{4}$/,
+        "Zip code must be 9 digits in #####-#### format (e.g., 12345-6789)"
+      )
+      .optional()
+      .or(z.literal("")),
     newsletter: z.boolean().optional(),
     contact: z.enum(["email", "phone", "none"]),
     email: z
@@ -79,6 +86,25 @@ const schema = z
           message: "Each file must be less than 5MB",
         }
       ),
+  })
+  .superRefine((data, ctx) => {
+    const zip5Provided = data.zip5 && data.zip5.length > 0;
+    const zip9Provided = data.zip9 && data.zip9.length > 0;
+
+    if (!zip5Provided && !zip9Provided) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message:
+          "A zip code is required. Use either the 5-digit or 9-digit field.",
+        path: ["zip5"],
+      });
+    } else if (zip5Provided && zip9Provided) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: "Provide either the 5-digit or 9-digit zip, not both.",
+        path: ["zip5"],
+      });
+    }
   })
   .refine(
     (data) => {
@@ -122,6 +148,8 @@ export default function ContactForm() {
       email: "",
       phone: "",
       comments: "",
+      zip5: "",
+      zip9: "",
     },
     mode: "onChange",
   });
@@ -174,32 +202,46 @@ export default function ContactForm() {
             )}
           </div>
 
+          <div className="space-y-2">
+            <Label htmlFor="city">City</Label>
+            <Input
+              id="city"
+              {...register("city")}
+              placeholder="City"
+              maxLength={80}
+              className={errors.city ? "input-error" : ""}
+            />
+            {errors.city && (
+              <p className="text-sm text-red-500">{errors.city.message}</p>
+            )}
+          </div>
+
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="city">City</Label>
+              <Label htmlFor="zip5">5-Digit Zip Code</Label>
               <Input
-                id="city"
-                {...register("city")}
-                placeholder="City"
-                maxLength={80}
-                className={errors.city ? "input-error" : ""}
+                id="zip5"
+                {...register("zip5")}
+                placeholder="12345"
+                maxLength={5}
+                className={errors.zip5 ? "input-error" : ""}
               />
-              {errors.city && (
-                <p className="text-sm text-red-500">{errors.city.message}</p>
+              {errors.zip5 && (
+                <p className="text-sm text-red-500">{errors.zip5.message}</p>
               )}
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="zip">Zip Code</Label>
+              <Label htmlFor="zip9">9-Digit Zip Code</Label>
               <Input
-                id="zip"
-                {...register("zip")}
-                placeholder="Zip Code"
+                id="zip9"
+                {...register("zip9")}
+                placeholder="12345-6789"
                 maxLength={10}
-                className={errors.zip ? "input-error" : ""}
+                className={errors.zip9 ? "input-error" : ""}
               />
-              {errors.zip && (
-                <p className="text-sm text-red-500">{errors.zip.message}</p>
+              {errors.zip9 && (
+                <p className="text-sm text-red-500">{errors.zip9.message}</p>
               )}
             </div>
           </div>
